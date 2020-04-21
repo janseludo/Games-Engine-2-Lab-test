@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class TrafficLights : MonoBehaviour
 {
-    public int numTrafficlights = 8;
+    public int numTrafficlights = 12;
     public float radius = 10;
     public float scale = 10;
     public List<GameObject> trafficLights = new List<GameObject>();
+
+    
     //public GameObject trafficLight;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,14 +30,27 @@ public class TrafficLights : MonoBehaviour
             Quaternion quat = Quaternion.AngleAxis(theta * i * Mathf.Rad2Deg, Vector3.up);
             quat = transform.rotation * quat;
 
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.SetPositionAndRotation(pos, quat);
-            cube.transform.parent = this.transform;
+            GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            cylinder.transform.SetPositionAndRotation(pos, quat);
+            cylinder.transform.parent = this.transform;
             //start with random color (red, yellow, green and purple
             //loop to change every 4 seconds from red - yello - green
-            cube.GetComponent<Renderer>().material.color = Color.green;
-            trafficLights.Add(cube);
+            cylinder.GetComponent<Renderer>().material.color = Color.green;
+            trafficLights.Add(cylinder);
         }
+
+    }
+    void ChangeLight()
+    {
+        /*
+        while (true)
+        {
+            switch = !switch;
+            Red.enabled = switch;
+            Green.enabled = !switch;
+            yield WaitForSeconds(30);
+        }
+        */
 
     }
 

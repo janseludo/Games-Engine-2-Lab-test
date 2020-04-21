@@ -1,18 +1,21 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using UnityEngine;
 
-public class SteeringBehaviour : MonoBehaviour
+public abstract class SteeringBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float weight = 1.0f;
+    public Vector3 force;
+
+    [HideInInspector]
+    public Boid boid;
+
+    public void Awake()
     {
-        
+        boid = GetComponent<Boid>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract Vector3 Calculate();
 }

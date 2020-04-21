@@ -6,20 +6,23 @@ public class TrafficLights : MonoBehaviour
 {
     public int numTrafficlights = 12;
     public float radius = 10;
-    public float scale = 10;
+    
     public List<GameObject> trafficLights = new List<GameObject>();
 
+    Color[] colors = new Color[3];
+    float timer = 4.0f;
     
-    //public GameObject trafficLight;
     
     // Start is called before the first frame update
     void Start()
     {
-        MakeTrafficLights();
 
+        MakeTrafficLights();
     }
+
     void MakeTrafficLights()
     {
+
         trafficLights.Clear();
         float theta = (Mathf.PI * 2.0f) / numTrafficlights;
         for (int i = 0; i < numTrafficlights; i++)
@@ -35,32 +38,23 @@ public class TrafficLights : MonoBehaviour
             cylinder.transform.parent = this.transform;
             //start with random color (red, yellow, green and purple
             //loop to change every 4 seconds from red - yello - green
-            cylinder.GetComponent<Renderer>().material.color = Color.green;
+
+            colors[0] = cylinder.GetComponent<Renderer>().material.color = Color.green;
+            colors[1] = cylinder.GetComponent<Renderer>().material.color = Color.red;
+            colors[2] = cylinder.GetComponent<Renderer>().material.color = Color.yellow;
+
+            cylinder.GetComponent<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
             trafficLights.Add(cylinder);
         }
 
     }
-    void ChangeLight()
-    {
-        /*
-        while (true)
-        {
-            switch = !switch;
-            Red.enabled = switch;
-            Green.enabled = !switch;
-            yield WaitForSeconds(30);
-        }
-        */
 
-    }
-
-
-    // Update is called once per frame
     void Update()
     {
         for (int i = 0; i < trafficLights.Count; i++)
         {
-            trafficLights[i].transform.localScale = new Vector3(1, 1 , 1);
+            trafficLights[i].transform.localScale = new Vector3(1, 1, 1);
         }
+        
     }
 }

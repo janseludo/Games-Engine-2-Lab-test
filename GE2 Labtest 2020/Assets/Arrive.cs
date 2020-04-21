@@ -1,18 +1,26 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using UnityEngine;
 
-public class Arrive : MonoBehaviour
+public class Arrive : SteeringBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Vector3 targetPosition = Vector3.zero;
+    public float slowingDistance = 15.0f;
+
+    public GameObject targetGameObject = null;
+
+    public override Vector3 Calculate()
     {
-        
+        return boid.ArriveForce(targetPosition, slowingDistance);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        if (targetGameObject != null)
+        {
+            targetPosition = targetGameObject.transform.position;
+        }
     }
 }

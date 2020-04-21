@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public GameObject predator;
+    public GameObject GreenIsGo;
     void Start()
     {
         GetComponent<StateMachine>().ChangeState(new GreenIsGoState());
@@ -13,68 +13,28 @@ public class CarController : MonoBehaviour
 
 class GreenIsGoState : State
 {
+    public Transform goGreen;
+    public Arrive arrive;
     public override void Enter()
     {
-        
+        arrive = owner.GetComponent<Arrive>();
     }
 
     public override void Think()
     {
-       
-    }
-
-    public override void Exit()
-    {
         
-    }
-}
+        Vector3 target = goGreen.transform.position;
+        target.y = 0;
+        arrive.targetPosition = target;
 
-
-/*
-class PatrolState : State
-{
-    public override void Enter()
-    {
-       owner.GetComponent<FollowPath>().enabled = true;
-    }
-
-    public override void Think()
-    {
-        if (Vector3.Distance(
-            owner.GetComponent<PreyController>().predator.transform.position,
-            owner.transform.position) < 10)
+        if (Vector3.Distance(owner.transform.position, goGreen.transform.position) < 1)
         {
-            owner.ChangeState(new DefendState());
+            
         }
     }
 
     public override void Exit()
     {
-        owner.GetComponent<FollowPath>().enabled = false;
+        
     }
 }
-
-public class DefendState : State
-{
-    public override void Enter()
-    {
-        owner.GetComponent<Pursue>().target = owner.GetComponent<PreyController>().predator.GetComponent<Boid>();
-        owner.GetComponent<Pursue>().enabled = true;
-    }
-
-    public override void Think()
-    {
-        if (Vector3.Distance(
-            owner.GetComponent<PreyController>().predator.transform.position,
-            owner.transform.position) > 30)
-        {
-            owner.ChangeState(new PatrolState());
-        }
-    }
-
-    public override void Exit()
-    {
-        owner.GetComponent<Pursue>().enabled = false;
-    }
-}
-*/

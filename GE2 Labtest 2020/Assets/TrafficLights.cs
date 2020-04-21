@@ -38,9 +38,8 @@ public class TrafficLights : MonoBehaviour
             cylinder.transform.parent = this.transform;
             //start with random color (red, yellow, green and purple
             //loop to change every 4 seconds from red - yello - green
-
-            colors[0] = cylinder.GetComponent<Renderer>().material.color = Color.green;
             colors[1] = cylinder.GetComponent<Renderer>().material.color = Color.red;
+            colors[0] = cylinder.GetComponent<Renderer>().material.color = Color.green;
             colors[2] = cylinder.GetComponent<Renderer>().material.color = Color.yellow;
 
             cylinder.GetComponent<Renderer>().material.color = colors[Random.Range(0, colors.Length)];

@@ -8,7 +8,7 @@ public class TrafficLights : MonoBehaviour
     public float radius = 10;
     public float scale = 10;
     public List<GameObject> trafficLights = new List<GameObject>();
-
+    //public GameObject trafficLight;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +30,9 @@ public class TrafficLights : MonoBehaviour
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cube.transform.SetPositionAndRotation(pos, quat);
             cube.transform.parent = this.transform;
-            cube.GetComponent<Renderer>().material.color = Color.HSVToRGB(
-                i / (float)numTrafficlights, 1, 1);
+            //start with random color (red, yellow, green and purple
+            //loop to change every 4 seconds from red - yello - green
+            cube.GetComponent<Renderer>().material.color = Color.green;
             trafficLights.Add(cube);
         }
 

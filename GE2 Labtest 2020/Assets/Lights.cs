@@ -37,15 +37,15 @@ public class Lights : MonoBehaviour
     }
     IEnumerator Red()
     {
-        gameObject.GetComponent<MeshRenderer>().material = yellow;
+        gameObject.GetComponent<MeshRenderer>().material = red;
         color = "red";
         yield return new WaitForSeconds(4);
-        StartCoroutine("Yellow");
+        StartCoroutine("Yellow2");
     }
 
     IEnumerator Yellow2() //orange
     {
-        gameObject.GetComponent<MeshRenderer>().material = green;
+        gameObject.GetComponent<MeshRenderer>().material = yellow;
         color = "green";
         int wait = Random.Range(5, 11);
         yield return new WaitForSeconds(wait);

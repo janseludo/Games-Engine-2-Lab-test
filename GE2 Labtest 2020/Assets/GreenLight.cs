@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarController : MonoBehaviour
+public class GreenLight : MonoBehaviour
 {
     public Transform lights;
     public List<GameObject> trafficLight = new List<GameObject>();

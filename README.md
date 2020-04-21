@@ -2,6 +2,4 @@
 
 # Traffic lights
 
-# Steering behaviour
-
-# State machine
+# Car
